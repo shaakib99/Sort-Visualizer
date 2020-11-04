@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <!-- itim font from google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <script src="index.js"></script>
+    <script src="mergeSort.js"></script>
+    <script src="quickSort.js"></script>
+    <script src="heapSort.js"></script>
+    <script src="bubbleSort.js"></script>
+    <title>Sort Visualizer</title>
+</head>
+<body>
+    <div class="header">
+        <div id="left-part">
+            <div id="logo"><span>Sort Visualizer</span></div>
+            <div id="select-sort">
+                <div id="select-sort-show-current-value">
+                    <span id="algo-name">Select Algorithm</span>
+                    <img src="./assets/arrow-down-sign-to-navigate.png" alt="" srcset="">
+                </div>
+                <div id="select-sort-values">
+                    <ul id="sort-list">
+                        <li onclick="selectIndex(0)">Merge Sort</li>
+                        <li onclick="selectIndex(1)">Quick Sort</li>
+                        <li onclick="selectIndex(2)">Heap Sort</li>
+                        <li onclick="selectIndex(3)">Bubble Sort</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="number-of-items">
+                <span>Items</span>
+                <input type="range" name="item-slider" id="number-of-item-slider-id" min="2" max="100" >
+                <span id="slider-value">50</span>
+            </div>
+        </div>
+        <div id="right-part">
+            <button id="visualizer">Start Sorting</button>
+        </div>
+    </div>
+    <div class="visualize-data">
+        <ul id="data-bars"></ul>
+    </div>
+</body>
+</html>
