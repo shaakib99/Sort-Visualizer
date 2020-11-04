@@ -93,13 +93,13 @@ const draw = (items,mainIndex,swappedIndex) =>{
     const barsId = document.getElementById('data-bars');
     var list = '';
     const listStartWith = '<li class="'+className+ '" ';
-    const listEndsWith = '></li>';
+    const listEndsWith = '</li>';
 
     for(i=0;i<items.length;i++){
         const height = items[i] + pixelTobeAdded;
-        const style = 'style=height:' + height + 'px';
+        const style = 'style=height:' + height + 'px>';
 
-        list += listStartWith + style + listEndsWith;
+        list += listStartWith + style + items[i] +  listEndsWith;
     }
 
     barsId.innerHTML = list

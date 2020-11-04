@@ -124,6 +124,8 @@ body{
     background-color: rgb(111, 39, 160);
     max-height: 250px;
     border: 1px solid #a45eb9;
+    color: white;
+    font-family: 'itim';
 }
 .mainIndex{
     background-color: tomato;
