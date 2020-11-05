@@ -1,7 +1,7 @@
 const pixelTobeAdded = 100 //px
 const maxRandomNumber = 100
 const className = 'bars'
-const waitingTime = 200;
+const waitingTime = 200; //ms
 let global_RandomArr = [];
 let selectedAlgorithmIndex = -1;
 let programStatus = 'pause';
@@ -89,15 +89,16 @@ const generateRandomNumberArray = (numberOfItem) =>{
     return arr;
 }
 
-const draw = (items,mainIndex,swappedIndex) =>{
+const draw = (items,changedIndex) =>{
     const barsId = document.getElementById('data-bars');
     var list = '';
     const listStartWith = '<li class="'+className+ '" ';
     const listEndsWith = '</li>';
-
+    changedIndex = changedIndex === undefined ? [] : changedIndex;
     for(i=0;i<items.length;i++){
         const height = items[i] + pixelTobeAdded;
-        const style = 'style=height:' + height + 'px>';
+        const colorBar = changedIndex.includes(i) ? 'background-color:coral;color:rgb(111, 39, 160)' : '';
+        const style = 'style=height:' + height + 'px;'+colorBar+'>';
 
         list += listStartWith + style + items[i] +  listEndsWith;
     }
@@ -106,9 +107,16 @@ const draw = (items,mainIndex,swappedIndex) =>{
 }
 
 const updateBar = (sortedArr) =>{
-    sortedArr.forEach((arr,index) => {
-        setTimeout(() =>draw(arr), index * waitingTime)
-    });
+    for(var i=0;i<sortedArr.length;i++){
+        const tempSortedArr = sortedArr[i];
+        const nextSortedArr = sortedArr[i+1];
+        if(nextSortedArr !== undefined){
+            const changedIndices = findChangedIndices(tempSortedArr,nextSortedArr)
+            setTimeout(()=>draw(tempSortedArr,changedIndices), i * waitingTime)
+        }else{
+            setTimeout(()=>draw(tempSortedArr), i * waitingTime)
+        }
+    }
 }
 
 const showSlectedAlgroithm = (index) =>{
@@ -130,4 +138,14 @@ const selectIndex = (index) =>{
 
     setValueAndDraw(sliderId,targetId)
     showSlectedAlgroithm(index);
+}
+
+const findChangedIndices = (arr1,arr2) =>{
+    var changedIndex = []
+        for(var j=0;j<arr1.length;j++){
+            if(arr1[j] !== arr2[j]){
+                changedIndex.push(j)
+            }
+        }
+    return changedIndex
 }
