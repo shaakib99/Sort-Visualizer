@@ -2,6 +2,7 @@ const pixelTobeAdded = 100 //px
 const maxRandomNumber = 100
 const className = 'bars'
 const waitingTime = 200; //ms
+const changedBarColor = 'coral';
 let global_RandomArr = [];
 let selectedAlgorithmIndex = -1;
 let programStatus = 'pause';
@@ -97,7 +98,7 @@ const draw = (items,changedIndex) =>{
     changedIndex = changedIndex === undefined ? [] : changedIndex;
     for(i=0;i<items.length;i++){
         const height = items[i] + pixelTobeAdded;
-        const colorBar = changedIndex.includes(i) ? 'background-color:coral;color:rgb(111, 39, 160)' : '';
+        const colorBar = changedIndex.includes(i) ? 'background-color:'+changedBarColor+';color:black' : '';
         const style = 'style=height:' + height + 'px;'+colorBar+'>';
 
         list += listStartWith + style + items[i] +  listEndsWith;
